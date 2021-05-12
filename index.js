@@ -10,6 +10,7 @@ if(config.pushover.token !== ''){
 }
 
 const pincode = config.pincode;
+const age = config.your_age;
 
 const time = 60 * config.time_interval; // in seconds
 
@@ -58,7 +59,7 @@ const sendToPushover = () => {
 
     let pushover = {
         method: 'post',
-        url: 'https://api.pushover.net/1/messages.json',
+        url: config.pushover.endpoint,
         headers: {
             'Content-Type': 'application/json',
             ...data.getHeaders()
@@ -69,6 +70,7 @@ const sendToPushover = () => {
     axios(pushover)
     .then((response) => {
         console.log('Sent Data to Pushover'.help);
+        console.log(response);
     })
     .catch((error) => {
         console.log(error);
@@ -90,8 +92,9 @@ const checkForVaccine = async () => {
             data.centers.forEach((center) => {
                 if(center.sessions){
                     center.sessions.forEach((session) => {
-                        if (session.min_age_limit === 18 && session.available_capacity !== 0) {
+                        if (session.min_age_limit <= age && session.available_capacity !== 0) {
                             console.log((config.success).success.bold);
+                            console.log(session);
                             if(usePushover){
                                 sendToPushover();
                             }
@@ -104,4 +107,6 @@ const checkForVaccine = async () => {
 }
 
 checkForVaccine();
-setInterval(checkForVaccine, time * 1000);
+if(!config.is_cron){
+    setInterval(checkForVaccine, time * 1000);
+}
