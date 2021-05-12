@@ -28,6 +28,8 @@
     cp ./config/index.sample.js ./config/index.js
     ```
 
+* Update your pincode and interval to check in the config file.
+
 
 * Run Project
 
@@ -35,11 +37,12 @@
     npm start
     ```
 
-### Integrate Pushover for Push Notification
+### Integrate Pushover for Push Notification [Optional]
 
 * Go to [Pushover](https://pushover.net/)
 * Create Account
 * Create an Application
 * Copy App Token and User Key and paste it in Config.
+* Install and Login to Pushover on your phone.
 
-  You'll get Pushover Notification on Phone.
+  You'll get Pushover Notifications on Phone.
