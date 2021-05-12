@@ -80,7 +80,7 @@
 
 * Enter `:wq!` to write and exit.
 
-* Your can verify the job
+* Verify your cron job.
   ```
   crontab -l
   ```
