@@ -28,7 +28,7 @@
     cp ./config/index.sample.js ./config/index.js
     ```
 
-* Update your pincode and interval to check in the config file.
+* Update your pincode and time interval in the config file.
 
 
 * Run Project
