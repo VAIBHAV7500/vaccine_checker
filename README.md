@@ -46,3 +46,46 @@
 * Install and Login to Pushover on your phone.
 
   You'll get Pushover Notifications on Phone.
+
+### Using it with CRON [Optional] 
+  #### Use it only when you are using Pushover
+
+* In Config, update key `is_cron` as true.
+
+* Know your Node location.
+  ```
+  whereis node
+  ```
+
+* Know your File Path
+  ```
+  pwd
+  ```
+
+* Get your cron schedule expression ( You can use [Crontab.guru](https://crontab.guru/) )
+
+* Add it to crontab.
+  ```
+  crontab -e
+  ```
+
+* Press `i` for insert mode.
+
+* Add the job
+  ```
+  your_cron_expression your_node_path your_file_path/index.js
+  ```
+
+* Press `esc` key.
+
+* Enter `:wq!` to write and exit.
+
+* Your can verify the job
+  ```
+  crontab -l
+  ```
+
+* To remove all the jobs.
+  ```
+  crontab -r
+  ```
