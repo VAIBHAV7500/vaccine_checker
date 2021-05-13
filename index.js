@@ -82,7 +82,7 @@ const checkForVaccine = async () => {
     console.log(`Checking at ${moment().format()}`.info);
     const date = moment().format('DD-MM-YYYY');
     const params = `?pincode=${pincode}&date=${date}`;
-    vaccineDetails.url = vaccineDetails.url + params;
+    vaccineDetails.url = config.endpoint + params;
     const response = await axios(vaccineDetails).catch((err) => {
         console.log(err);
     });
