@@ -90,13 +90,28 @@ const checkForVaccine = async () => {
         const data = response.data;
         if(data.centers){
             data.centers.forEach((center) => {
+                if(center.fee_type === "Paid"){
+                    if(!config.is_paid){
+                        return;
+                    }
+                }
                 if(center.sessions){
                     center.sessions.forEach((session) => {
                         if (session.min_age_limit <= age && session.available_capacity !== 0) {
-                            console.log((config.success).success.bold);
-                            console.log(session);
-                            if(usePushover){
-                                sendToPushover();
+                            let notify = 0;
+                            if (session.available_capacity_dose1 > 0 && config.dose_1){
+                                notify = 1;
+                            }
+                            if (session.available_capacity_dose2 > 0 && config.dose_2){
+                                notify = 2;
+                            }
+                            if(notify != 0){
+                                console.log(`Dose ${notify} is Available`);
+                                console.log((config.success).success.bold);
+                                console.log(session);
+                                if (usePushover) {
+                                    sendToPushover();
+                                }
                             }
                         }
                     });
